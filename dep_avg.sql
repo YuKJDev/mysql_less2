@@ -1,7 +1,16 @@
-SELECT d.dept_no as id, d.dept_name AS 'Департамент', round(avg(s.salary), 2) as 'Средняя зарплата'
-FROM departments d
-left join dept_emp as de on d.dept_no = de.dept_no
-left join salaries s on s.emp_no = de.emp_no
-left join employees e on de.emp_no = e.emp_no
-group by d.dept_no
+SELECT 
+    d.dept_no AS id,
+    d.dept_name AS 'Департамент',
+    ROUND(AVG(s.salary), 2) AS 'Средняя зарплата'
+FROM
+    departments d
+        JOIN
+    dept_emp AS de ON d.dept_no = de.dept_no
+        JOIN
+    salaries s ON s.emp_no = de.emp_no
+        JOIN
+    employees e ON de.emp_no = e.emp_no
+WHERE
+    CURDATE() BETWEEN s.from_date AND s.to_date
+GROUP BY d.dept_no
 ;
