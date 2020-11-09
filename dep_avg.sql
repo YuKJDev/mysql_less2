@@ -11,6 +11,7 @@ FROM
         JOIN
     employees e ON de.emp_no = e.emp_no
 WHERE
-    CURDATE() BETWEEN s.from_date AND s.to_date
+    s.to_date = '9999-01-01'
+    AND de.to_date = '9999-01-01'
 GROUP BY d.dept_no
 ;
