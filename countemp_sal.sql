@@ -1,9 +1,15 @@
-select de.dept_no, dep.dept_name, count(*), sum(sal.salary)
-  from employees.employees emp
-  join employees.salaries sal on emp.emp_no = sal.emp_no and sal.from_date <= curdate() and sal.to_date > curdate()
-  join employees.dept_emp de on de.emp_no = emp.emp_no
-  join employees.departments dep on dep.dept_no = de.dept_no
- where de.from_date <= curdate()
-   and de.to_date > curdate()
-group by dep.dept_no
-order by dept_no asc;
+SELECT 
+    de.dept_no, dep.dept_name, COUNT(*), SUM(sal.salary)
+FROM
+    employees.employees emp
+        JOIN
+    employees.salaries sal ON emp.emp_no = sal.emp_no
+        JOIN
+    employees.dept_emp de ON de.emp_no = emp.emp_no
+        JOIN
+    employees.departments dep ON dep.dept_no = de.dept_no
+WHERE
+    de.to_date = '9999-01-01'
+    AND sal.to_date = '9999-01-01'
+GROUP BY dep.dept_no
+ORDER BY dept_no ASC;
